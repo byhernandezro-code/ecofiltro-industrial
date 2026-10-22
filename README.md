@@ -28,3 +28,16 @@ La reducción efectiva puede diferir de la eficiencia seleccionada por el redond
 Cada círculo representa una partícula de un ciclo repetido; no son emisiones acumuladas.
 
 Modelo matemático educativo, sin mediciones reales ni certificación industrial.
+
+## Guía para explicar el código
+- index.html define el contenido y conecta los otros dos archivos. Sus comentarios se escriben entre <!-- y --> y no aparecen como texto en la página.
+- style.css define colores, tamaños, distribución adaptable y animaciones. Los comentarios se escriben entre /* y */.
+- script.js conecta los controles con el modelo matemático y actualiza el documento. Los comentarios comienzan con //.
+- Los identificadores del HTML permiten que JavaScript encuentre cada control y cada resultado.
+- calculate recibe la cantidad y la eficiencia; devuelve las partículas iniciales, retenidas, restantes y la reducción.
+- renderDots crea los círculos y asigna la clase caught a la cantidad de partículas retenidas.
+- update lee los deslizadores, calcula y muestra los resultados. Si el sistema está activo, también reconstruye la animación.
+- El evento input responde al movimiento de cada deslizador. El evento click ejecuta el inicio o el reinicio.
+- CSS interpreta las variables --y, --delay, --stop y --static asignadas desde JavaScript.
+- Reiniciar restaura 100 partículas y 35 por ciento de eficiencia, elimina los círculos y habilita el inicio.
+- La preferencia de movimiento reducido conserva una representación estática.
