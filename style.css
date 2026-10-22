@@ -1,1 +1,335 @@
-:root{font-family:system-ui,-apple-system,sans-serif;color:#163d30;background:#eef7ef;line-height:1.6}*{box-sizing:border-box}body{margin:0}header,main,footer{max-width:1100px;margin:auto;padding:24px}header{padding-top:48px}h1{font-size:clamp(2rem,5vw,3.3rem);letter-spacing:-.04em;margin:12px 0}h2{font-size:1.25rem;margin-top:0}h3{font-size:1rem;margin:0}.tag{background:#d6ebbd;color:#28501c;padding:7px 12px;border-radius:20px;font-size:.75rem;letter-spacing:.12em;font-weight:800}.card{background:white;border:1px solid #d6e6db;border-radius:20px;padding:24px;box-shadow:0 6px 24px #163d3008}main{display:grid;gap:24px}label{display:flex;justify-content:space-between;font-weight:650;margin-top:18px}output{color:#14633f}input[type=range]{width:100%;accent-color:#19764a;min-height:44px;cursor:pointer}.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}button{font:inherit;font-weight:650;border:0;border-radius:12px;padding:12px 20px;background:#196c45;color:white;cursor:pointer;min-height:48px}button:hover{background:#105034}button:disabled{opacity:.7;cursor:default}#reset{background:#e5f0e7;color:#204c35}:focus-visible{outline:3px solid #a36006;outline-offset:4px}.labels{display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;font-size:.85rem;gap:8px;margin:22px 0 10px}.duct{position:relative;height:210px;border:9px solid #708a7c;border-radius:20px;background:linear-gradient(90deg,#e1e7e4 49%,#e9f6e7 50%);overflow:hidden;isolation:isolate}.mesh{position:absolute;left:49%;top:0;width:4%;height:100%;background:repeating-linear-gradient(0deg,transparent 0 9px,#326a50 9px 12px),repeating-linear-gradient(90deg,#d6e9dc 0 5px,#326a50 5px 8px);z-index:2}.arrows{position:absolute;inset:65px 0 auto;text-align:center;word-spacing:18px;color:#4e8567;font-size:32px;opacity:.35;white-space:nowrap}.dot{position:absolute;left:0;top:var(--y);width:6px;height:6px;border-radius:50%;background:#58625e;animation:pass 5s linear infinite;animation-delay:var(--delay);animation-fill-mode:backwards}.dot.caught{animation-name:catch}.active .arrows{animation:breathe 2s ease-in-out infinite}@keyframes pass{from{left:2%}to{left:97%}}@keyframes catch{0%{left:2%;background:#58625e}55%,100%{left:var(--stop);background:#a75b09}}@keyframes breathe{50%{opacity:.8}}.results{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.results strong{display:block;font-size:2.4rem;color:#14633f;margin-top:12px}.hint{font-size:.85rem;color:#486356}aside{padding:16px;border-left:4px solid #8c6a11;background:#fbf8e9;border-radius:8px}footer{text-align:center;color:#486356;font-size:.85rem}@media(max-width:650px){header,main,footer{padding:18px}.card{padding:18px}.results{grid-template-columns:repeat(2,1fr)}.labels{font-size:.7rem}.arrows{word-spacing:0}.duct{height:210px}button{flex:1}}@media(prefers-reduced-motion:reduce){.dot,.active .arrows{animation:none}.dot{left:var(--static)}.dot.caught{background:#a75b09}}
+/* Establece la tipografía del sistema, los colores generales y el espacio entre líneas. */
+:root {
+  font-family:system-ui,-apple-system,sans-serif;
+  color:#163d30;
+  background:#eef7ef;
+  line-height:1.6;
+}
+
+/* Incluye bordes y relleno dentro del ancho y alto de cada elemento. */
+* {
+  box-sizing:border-box;
+}
+
+/* Elimina el margen predeterminado del navegador. */
+body {
+  margin:0;
+}
+
+/* Centra el contenido y limita el ancho para facilitar la lectura. */
+header,main,footer {
+  max-width:1100px;
+  margin:auto;
+  padding:24px;
+}
+
+/* Agrega espacio superior al encabezado. */
+header {
+  padding-top:48px;
+}
+
+/* Ajusta el título entre un tamaño mínimo y máximo según el ancho de pantalla. */
+h1 {
+  font-size:clamp(2rem,5vw,3.3rem);
+  letter-spacing:-.04em;
+  margin:12px 0;
+}
+
+/* Define el tamaño y margen de los títulos de sección. */
+h2 {
+  font-size:1.25rem;
+  margin-top:0;
+}
+
+/* Define el aspecto de los títulos de las tarjetas de resultados. */
+h3 {
+  font-size:1rem;
+  margin:0;
+}
+
+/* Da forma a la etiqueta del proyecto STEM. */
+.tag {
+  background:#d6ebbd;
+  color:#28501c;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:.75rem;
+  letter-spacing:.12em;
+  font-weight:800;
+}
+
+/* Dibuja las tarjetas blancas con borde, esquinas redondeadas y sombra suave. */
+.card {
+  background:white;
+  border:1px solid #d6e6db;
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 6px 24px #163d3008;
+}
+
+/* Distribuye las secciones en una cuadrícula con separación. */
+main {
+  display:grid;
+  gap:24px;
+}
+
+/* Coloca el nombre del control y su valor en extremos opuestos. */
+label {
+  display:flex;
+  justify-content:space-between;
+  font-weight:650;
+  margin-top:18px;
+}
+
+/* Destaca los valores seleccionados con color verde. */
+output {
+  color:#14633f;
+}
+
+/* Estiliza los deslizadores y amplía su zona de interacción. */
+input[type=range] {
+  width:100%;
+  accent-color:#19764a;
+  min-height:44px;
+  cursor:pointer;
+}
+
+/* Organiza los botones y permite que cambien de línea. */
+.buttons {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+
+/* Define el tamaño, color y zona pulsable de los botones. */
+button {
+  font:inherit;
+  font-weight:650;
+  border:0;
+  border-radius:12px;
+  padding:12px 20px;
+  background:#196c45;
+  color:white;
+  cursor:pointer;
+  min-height:48px;
+}
+
+/* Oscurece el botón cuando el puntero pasa encima. */
+button:hover {
+  background:#105034;
+}
+
+/* Distingue el botón deshabilitado durante la simulación. */
+button:disabled {
+  opacity:.7;
+  cursor:default;
+}
+
+/* Aplica un estilo secundario al botón Reiniciar. */
+#reset {
+  background:#e5f0e7;
+  color:#204c35;
+}
+
+/* Marca con un contorno el elemento seleccionado mediante el teclado. */
+:focus-visible {
+  outline:3px solid #a36006;
+  outline-offset:4px;
+}
+
+/* Distribuye los nombres de las tres zonas en columnas. */
+.labels {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  text-align:center;
+  font-size:.85rem;
+  gap:8px;
+  margin:22px 0 10px;
+}
+
+/* Define el conducto; position:relative sirve de referencia a los círculos y overflow:hidden evita que se dibujen fuera. */
+.duct {
+  position:relative;
+  height:210px;
+  border:9px solid #708a7c;
+  border-radius:20px;
+  background:linear-gradient(90deg,#e1e7e4 49%,#e9f6e7 50%);
+  overflow:hidden;
+  isolation:isolate;
+}
+
+/* Superpone líneas horizontales y verticales para representar la rejilla. */
+.mesh {
+  position:absolute;
+  left:49%;
+  top:0;
+  width:4%;
+  height:100%;
+  background:repeating-linear-gradient(0deg,transparent 0 9px,#326a50 9px 12px),repeating-linear-gradient(90deg,#d6e9dc 0 5px,#326a50 5px 8px);
+  z-index:2;
+}
+
+/* Muestra las flechas que indican la dirección del aire. */
+.arrows {
+  position:absolute;
+  inset:65px 0 auto;
+  text-align:center;
+  word-spacing:18px;
+  color:#4e8567;
+  font-size:32px;
+  opacity:.35;
+  white-space:nowrap;
+}
+
+/* Representa cada partícula como un círculo; usa la posición y el desfase definidos por JavaScript. pass dura 5 segundos y se repite. */
+.dot {
+  position:absolute;
+  left:0;
+  top:var(--y);
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#58625e;
+  animation:pass 5s linear infinite;
+  animation-delay:var(--delay);
+  animation-fill-mode:backwards;
+}
+
+/* Cambia la animación para las partículas que el modelo retiene. */
+.dot.caught {
+  animation-name:catch;
+}
+
+/* Anima la intensidad de las flechas cuando el sistema está encendido. */
+.active .arrows {
+  animation:breathe 2s ease-in-out infinite;
+}
+
+/* Desplaza las partículas no retenidas desde la entrada hasta la salida. */
+@keyframes pass {
+  from {
+    left:2%;
+  }
+
+  to {
+    left:97%;
+  }
+
+}
+
+/* Mueve las partículas hasta su posición de retención y cambia su color a ámbar. */
+@keyframes catch {
+  0% {
+    left:2%;
+    background:#58625e;
+  }
+
+  55%,100% {
+    left:var(--stop);
+    background:#a75b09;
+  }
+
+}
+
+/* Varía la opacidad de las flechas para sugerir flujo de aire. */
+@keyframes breathe {
+  50% {
+    opacity:.8;
+  }
+
+}
+
+/* Distribuye las cuatro tarjetas de resultados en columnas. */
+.results {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+/* Destaca las cantidades calculadas con números grandes. */
+.results strong {
+  display:block;
+  font-size:2.4rem;
+  color:#14633f;
+  margin-top:12px;
+}
+
+/* Estiliza las aclaraciones del modelo y las fórmulas. */
+.hint {
+  font-size:.85rem;
+  color:#486356;
+}
+
+/* Resalta el aviso sobre el carácter educativo de los resultados. */
+aside {
+  padding:16px;
+  border-left:4px solid #8c6a11;
+  background:#fbf8e9;
+  border-radius:8px;
+}
+
+/* Centra el texto al final de la página. */
+footer {
+  text-align:center;
+  color:#486356;
+  font-size:.85rem;
+}
+
+/* En pantallas pequeñas reduce espacios y muestra los resultados en dos columnas. */
+@media(max-width:650px) {
+  /* Centra el contenido y limita el ancho para facilitar la lectura. */
+  header,main,footer {
+    padding:18px;
+  }
+
+  /* Dibuja las tarjetas blancas con borde, esquinas redondeadas y sombra suave. */
+  .card {
+    padding:18px;
+  }
+
+  /* Distribuye las cuatro tarjetas de resultados en columnas. */
+  .results {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  /* Distribuye los nombres de las tres zonas en columnas. */
+  .labels {
+    font-size:.7rem;
+  }
+
+  /* Muestra las flechas que indican la dirección del aire. */
+  .arrows {
+    word-spacing:0;
+  }
+
+  /* Define el conducto; position:relative sirve de referencia a los círculos y overflow:hidden evita que se dibujen fuera. */
+  .duct {
+    height:210px;
+  }
+
+  /* Define el tamaño, color y zona pulsable de los botones. */
+  button {
+    flex:1;
+  }
+
+}
+
+/* Respeta la preferencia de movimiento reducido: detiene las animaciones y utiliza posiciones fijas. */
+@media(prefers-reduced-motion:reduce) {
+  .dot,.active .arrows {
+    animation:none;
+  }
+
+  /* Representa cada partícula como un círculo; usa la posición y el desfase definidos por JavaScript. pass dura 5 segundos y se repite. */
+  .dot {
+    left:var(--static);
+  }
+
+  /* Cambia la animación para las partículas que el modelo retiene. */
+  .dot.caught {
+    background:#a75b09;
+  }
+
+}
+
