@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EcoFiltro Industrial · ODS 12</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<header><span class="tag">PROYECTO STEM · ODS 12</span><h1>🌱 EcoFiltro Industrial</h1><p>Simulador educativo de filtración de partículas</p></header>
+<main>
+<section class="card" aria-labelledby="config"><h2 id="config">1. Configura tu experimento</h2>
+<label for="particles">Partículas iniciales <output id="particlesValue" for="particles">100</output></label>
+<input id="particles" type="range" min="20" max="200" step="10" value="100">
+<label for="efficiency">Eficiencia simulada del filtro <output id="efficiencyValue" for="efficiency">35 %</output></label>
+<input id="efficiency" type="range" min="0" max="95" step="5" value="35">
+<div class="buttons"><button id="start" type="button">▶ Iniciar simulación</button><button id="reset" type="button">↻ Reiniciar</button></div></section>
+<section class="card" aria-labelledby="diagramTitle"><h2 id="diagramTitle">2. Observa el recorrido del aire</h2>
+<p id="status" role="status">Sistema apagado</p>
+<div class="labels"><span>Chimenea / entrada</span><span>Cámara y filtro</span><span>Salida de aire filtrado</span></div>
+<div id="duct" class="duct" role="img" aria-label="Conducto de chimenea con filtro central; sistema apagado"><div class="arrows" aria-hidden="true">→ → → → → →</div><div class="mesh" aria-hidden="true"></div><div id="dots" aria-hidden="true"></div></div>
+<p class="hint">Gris: partículas en el aire. Ámbar: partículas retenidas. La salida puede contener partículas restantes.</p></section>
+<section aria-labelledby="resultsTitle"><h2 id="resultsTitle">3. Compara los resultados</h2><div class="results">
+<article class="card"><h3>Partículas iniciales</h3><strong id="initial">100</strong></article>
+<article class="card"><h3>Partículas retenidas</h3><strong id="retained">35</strong></article>
+<article class="card"><h3>Partículas restantes</h3><strong id="remaining">65</strong></article>
+<article class="card"><h3>Reducción porcentual</h3><strong id="reduction">35 %</strong></article>
+</div><p class="hint">Retenidas = redondear(iniciales × eficiencia / 100). Restantes = iniciales − retenidas. Reducción = retenidas / iniciales × 100.</p></section>
+<section class="card"><h2>La ciencia detrás del experimento</h2><p>La contaminación industrial incluye partículas y gases que los procesos productivos liberan al ambiente. Un filtro de partículas hace pasar el aire por un material que captura parte de los sólidos suspendidos; no elimina necesariamente los gases.</p><p>Reducir las emisiones ayuda a proteger la salud y los ecosistemas. El ODS 12 promueve la producción y el consumo responsables, el uso eficiente de recursos y la reducción de residuos y liberaciones contaminantes.</p><p><b>Prueba:</b> conserva la cantidad inicial y aumenta la eficiencia. ¿Cómo cambia la cantidad de partículas que sale?</p><aside>Modelo matemático educativo: los resultados son simulados, no constituyen mediciones reales de emisiones industriales ni demuestran la eficacia de un filtro industrial certificado. La animación muestra un ciclo repetido, no emisiones acumuladas.</aside></section>
+</main><footer>Aprender · Experimentar · Producir responsablemente</footer>
+</body></html>
