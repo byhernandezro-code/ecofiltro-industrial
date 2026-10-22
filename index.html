@@ -1,32 +1,103 @@
+<!-- Declara que el documento utiliza HTML5. -->
 <!doctype html>
+<!-- Define el español como idioma del documento. -->
 <html lang="es">
 <head>
+<!-- Permite mostrar correctamente acentos y caracteres del español. -->
 <meta charset="utf-8">
+<!-- Adapta el ancho de la página a la pantalla del dispositivo. -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Nombre que aparece en la pestaña del navegador. -->
 <title>EcoFiltro Industrial · ODS 12</title>
+<!-- Conecta los estilos definidos en style.css. -->
 <link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+<!-- Carga script.js; defer espera a que el HTML esté preparado antes de ejecutarlo. -->
+<script src="script.js" defer>
+</script>
 </head>
 <body>
-<header><span class="tag">PROYECTO STEM · ODS 12</span><h1>🌱 EcoFiltro Industrial</h1><p>Simulador educativo de filtración de partículas</p></header>
+<!-- Presenta el nombre del proyecto, el subtítulo y su relación con el ODS 12. -->
+<header>
+<span class="tag">PROYECTO STEM · ODS 12</span>
+<h1>EcoFiltro Industrial</h1>
+<p>Simulador educativo de filtración de partículas</p>
+</header>
+<!-- Contiene las secciones principales del simulador. -->
 <main>
-<section class="card" aria-labelledby="config"><h2 id="config">1. Configura tu experimento</h2>
-<label for="particles">Partículas iniciales <output id="particlesValue" for="particles">100</output></label>
+<!-- Panel de configuración. aria-labelledby vincula la sección con su título. -->
+<section class="card" aria-labelledby="config">
+<h2 id="config">1. Configura tu experimento</h2>
+<!-- La etiqueta está asociada al control particles; output muestra su valor actual. -->
+<label for="particles">Partículas iniciales <output id="particlesValue" for="particles">100</output>
+</label>
+<!-- Cantidad inicial: de 20 a 200 partículas, en incrementos de 10; comienza en 100. -->
 <input id="particles" type="range" min="20" max="200" step="10" value="100">
-<label for="efficiency">Eficiencia simulada del filtro <output id="efficiencyValue" for="efficiency">35 %</output></label>
+<!-- Etiqueta y salida que muestran la eficiencia seleccionada. -->
+<label for="efficiency">Eficiencia simulada del filtro <output id="efficiencyValue" for="efficiency">35 %</output>
+</label>
+<!-- Eficiencia: del 0 al 95 por ciento, en incrementos de 5; comienza en 35. -->
 <input id="efficiency" type="range" min="0" max="95" step="5" value="35">
-<div class="buttons"><button id="start" type="button">▶ Iniciar simulación</button><button id="reset" type="button">↻ Reiniciar</button></div></section>
-<section class="card" aria-labelledby="diagramTitle"><h2 id="diagramTitle">2. Observa el recorrido del aire</h2>
+<!-- Botones conectados en JavaScript con los eventos de inicio y reinicio. -->
+<div class="buttons">
+<button id="start" type="button">Iniciar simulación</button>
+<button id="reset" type="button">Reiniciar</button>
+</div>
+</section>
+<!-- Diagrama del conducto, la cámara de filtración y la salida de aire. -->
+<section class="card" aria-labelledby="diagramTitle">
+<h2 id="diagramTitle">2. Observa el recorrido del aire</h2>
+<!-- role=status permite anunciar los cambios de estado mediante tecnologías de asistencia. -->
 <p id="status" role="status">Sistema apagado</p>
-<div class="labels"><span>Chimenea / entrada</span><span>Cámara y filtro</span><span>Salida de aire filtrado</span></div>
-<div id="duct" class="duct" role="img" aria-label="Conducto de chimenea con filtro central; sistema apagado"><div class="arrows" aria-hidden="true">→ → → → → →</div><div class="mesh" aria-hidden="true"></div><div id="dots" aria-hidden="true"></div></div>
-<p class="hint">Gris: partículas en el aire. Ámbar: partículas retenidas. La salida puede contener partículas restantes.</p></section>
-<section aria-labelledby="resultsTitle"><h2 id="resultsTitle">3. Compara los resultados</h2><div class="results">
-<article class="card"><h3>Partículas iniciales</h3><strong id="initial">100</strong></article>
-<article class="card"><h3>Partículas retenidas</h3><strong id="retained">35</strong></article>
-<article class="card"><h3>Partículas restantes</h3><strong id="remaining">65</strong></article>
-<article class="card"><h3>Reducción porcentual</h3><strong id="reduction">35 %</strong></article>
-</div><p class="hint">Retenidas = redondear(iniciales × eficiencia / 100). Restantes = iniciales − retenidas. Reducción = retenidas / iniciales × 100.</p></section>
-<section class="card"><h2>La ciencia detrás del experimento</h2><p>La contaminación industrial incluye partículas y gases que los procesos productivos liberan al ambiente. Un filtro de partículas hace pasar el aire por un material que captura parte de los sólidos suspendidos; no elimina necesariamente los gases.</p><p>Reducir las emisiones ayuda a proteger la salud y los ecosistemas. El ODS 12 promueve la producción y el consumo responsables, el uso eficiente de recursos y la reducción de residuos y liberaciones contaminantes.</p><p><b>Prueba:</b> conserva la cantidad inicial y aumenta la eficiencia. ¿Cómo cambia la cantidad de partículas que sale?</p><aside>Modelo matemático educativo: los resultados son simulados, no constituyen mediciones reales de emisiones industriales ni demuestran la eficacia de un filtro industrial certificado. La animación muestra un ciclo repetido, no emisiones acumuladas.</aside></section>
-</main><footer>Aprender · Experimentar · Producir responsablemente</footer>
-</body></html>
+<!-- Identifica las tres zonas del recorrido del aire. -->
+<div class="labels">
+<span>Chimenea / entrada</span>
+<span>Cámara y filtro</span>
+<span>Salida de aire filtrado</span>
+</div>
+<!-- duct limita el dibujo; arrows indica el flujo; mesh dibuja la rejilla; dots recibe los círculos creados por JavaScript. -->
+<div id="duct" class="duct" role="img" aria-label="Conducto de chimenea con filtro central; sistema apagado">
+<div class="arrows" aria-hidden="true">→ → → → → →</div>
+<div class="mesh" aria-hidden="true">
+</div>
+<div id="dots" aria-hidden="true">
+</div>
+</div>
+<p class="hint">Gris: partículas en el aire. Ámbar: partículas retenidas. La salida puede contener partículas restantes.</p>
+</section>
+<!-- Las cuatro tarjetas reciben automáticamente los resultados calculados en script.js. -->
+<section aria-labelledby="resultsTitle">
+<h2 id="resultsTitle">3. Compara los resultados</h2>
+<div class="results">
+<article class="card">
+<h3>Partículas iniciales</h3>
+<strong id="initial">100</strong>
+</article>
+<article class="card">
+<h3>Partículas retenidas</h3>
+<strong id="retained">35</strong>
+</article>
+<article class="card">
+<h3>Partículas restantes</h3>
+<strong id="remaining">65</strong>
+</article>
+<article class="card">
+<h3>Reducción porcentual</h3>
+<strong id="reduction">35 %</strong>
+</article>
+</div>
+<p class="hint">Retenidas = redondear(iniciales × eficiencia / 100). Restantes = iniciales − retenidas. Reducción = retenidas / iniciales × 100.</p>
+</section>
+<!-- Explica el fundamento científico, propone una prueba y aclara las limitaciones del modelo. -->
+<section class="card">
+<h2>La ciencia detrás del experimento</h2>
+<p>La contaminación industrial incluye partículas y gases que los procesos productivos liberan al ambiente. Un filtro de partículas hace pasar el aire por un material que captura parte de los sólidos suspendidos; no elimina necesariamente los gases.</p>
+<p>Reducir las emisiones ayuda a proteger la salud y los ecosistemas. El ODS 12 promueve la producción y el consumo responsables, el uso eficiente de recursos y la reducción de residuos y liberaciones contaminantes.</p>
+<p>
+<b>Prueba:</b> conserva la cantidad inicial y aumenta la eficiencia. ¿Cómo cambia la cantidad de partículas que sale?</p>
+<aside>Modelo matemático educativo: los resultados son simulados, no constituyen mediciones reales de emisiones industriales ni demuestran la eficacia de un filtro industrial certificado. La animación muestra un ciclo repetido, no emisiones acumuladas.</aside>
+</section>
+<!-- Cierra el contenido principal y muestra el mensaje final del sitio. -->
+</main>
+<footer>Aprender · Experimentar · Producir responsablemente</footer>
+</body>
+</html>
